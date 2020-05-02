@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html">
 <head>
     <meta charset="UTF-8">
     <title>Beer Pong</title>
@@ -7,7 +7,8 @@
     <link rel="icon" href="cup.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body id="body" onclick="shootX()">
+<body id="body">
+<!--  onclick="shootY()"-->
   <div class="cups">
   <div class="row">
    <img src="cup.png" alt="" class="cup cup1" id="cup1">
@@ -23,9 +24,9 @@
   </div>
   </div>
    <div class="shooter"  id="shooter">
-    <svg class="ball shootX" id="ball">
-      <ellipse cx="25" cy="25" rx="25" ry="25"
-  style="fill:blue;" />
+    <svg class="ball shootY" id="ball">
+      <ellipse cx="25" cy="25" rx="24" ry="24"
+  style="fill:hsl(0, 0%, 90%); stroke: black; stroke-weight: 1px;" />
 <!--   <img src="ball.png" alt="">-->
     </svg>
   </div>
