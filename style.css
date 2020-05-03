@@ -1,3 +1,7 @@
+:root{
+    --top:0px;
+    --top325:325px;
+}
 *{
     padding: 0;
     margin: 0;
@@ -101,4 +105,11 @@ body{
 @keyframes fadeAway{
     0%{opacity: 1}
     100%{opacity: 0}
+}
+.marginTop{
+    animation: marginTop 1s;
+}
+@keyframes marginTop{
+    0%{top: var(--top)}
+    100%{top: var(--top325)}
 }

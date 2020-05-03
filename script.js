@@ -29,6 +29,10 @@ function shootX(valueY){
     var newtopStr = newtop.toString();
     var px = "px";
     var final = newtopStr.concat(px);
+    let root = document.documentElement;
+    root.style.setProperty('--top', (top)+ "px");
+    root.style.setProperty('--top325', (top-325)+ "px");
+    ball.classList.add("marginTop");
     ball.style.top = final;
     ball.style.left = left;
     if(140<topABS && topABS<175 && -125<leftABS && leftABS<-60){
@@ -59,18 +63,19 @@ function shootX(valueY){
         }else{
             reshoot.style.display = "block";
         }
-    },500);
+    },1500);
 }
 
 function removeCup(cup){
     var cupStr = "cup";
     var element = cupStr.concat(cup);
-    document.getElementById(element).classList.add("fadeAway");
     let alreadyExists = cupsOut.includes(cup);
     if(alreadyExists==false){  
         cupsOut.push(cup);
     }
-    console.log(cupsOut);
+    setTimeout(function(){
+        document.getElementById(element).classList.add("fadeAway");
+    },1000);
 }
 
 function reshoot1(){
@@ -78,6 +83,7 @@ function reshoot1(){
     ball.classList.add("shootY");
     ball.style.top = "0px";
     ball.style.left = "0px";
+    ball.classList.remove("marginTop");
     setTimeout(function(){
         document.addEventListener("click", shootY); 
     },1000);
