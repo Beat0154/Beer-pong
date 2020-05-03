@@ -55,6 +55,7 @@ function shootX(valueY){
             alert("Winner! Gagnant!");
             document.getElementById("time").innerHTML = time + " seconds";
             document.getElementById("time").style.display="block";
+            document.getElementById("restart").style.display="block";
         }else{
             reshoot.style.display = "block";
         }

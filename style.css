@@ -5,6 +5,7 @@
 }
 body{
     overflow-x: hidden;
+    display: block;
 }
 #reshoot, #restart{
     margin: 10rem auto;
