@@ -31,27 +31,30 @@ function shootX(valueY){
     var final = newtopStr.concat(px);
     ball.style.top = final;
     ball.style.left = left;
-    if(150<topABS && topABS<175 && -125<leftABS && leftABS<-80){
+    if(140<topABS && topABS<175 && -125<leftABS && leftABS<-60){
         removeCup("1");
     }
-    if(150<topABS && topABS<175 && -30<leftABS && leftABS<30){
+    if(140<topABS && topABS<175 && -40<leftABS && leftABS<40){
         removeCup("2");
     }
-    if(150<topABS && topABS<175 && 80<leftABS && leftABS<125){
+    if(140<topABS && topABS<175 && 60<leftABS && leftABS<125){
         removeCup("3");
     }
-    if(105<topABS && topABS<140 && -80<leftABS && leftABS<-35){
+    if(85<topABS && topABS<140 && -90<leftABS && leftABS<-25){
         removeCup("4");
     }
-    if(105<topABS && topABS<140 && 25<leftABS && leftABS<70){
+    if(85<topABS && topABS<140 && 15<leftABS && leftABS<80){
         removeCup("5");
     }
-    if(45<topABS && topABS<80 && -35<leftABS && leftABS<35){
+    if(25<topABS && topABS<80 && -45<leftABS && leftABS<45){
         removeCup("6");
     }
     setTimeout(function(){
         if(cupsOut.length == 6){
+            var time = timer();
             alert("Winner! Gagnant!");
+            document.getElementById("time").innerHTML = time + " seconds";
+            document.getElementById("time").style.display="block";
         }else{
             reshoot.style.display = "block";
         }
@@ -61,7 +64,7 @@ function shootX(valueY){
 function removeCup(cup){
     var cupStr = "cup";
     var element = cupStr.concat(cup);
-    document.getElementById(element).style.visibility = "hidden";
+    document.getElementById(element).classList.add("fadeAway");
     let alreadyExists = cupsOut.includes(cup);
     if(alreadyExists==false){  
         cupsOut.push(cup);
@@ -77,4 +80,13 @@ function reshoot1(){
     setTimeout(function(){
         document.addEventListener("click", shootY); 
     },1000);
+}
+var startDate = new Date();
+var startTime = startDate.getTime();
+function timer(){
+    var dateNow = new Date ();
+    var timeNow = dateNow.getTime();
+    var timeDiff = timeNow - startTime;
+    var secondsElapsed = Math.floor(timeDiff/1000);
+    return (secondsElapsed); 
 }
