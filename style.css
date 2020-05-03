@@ -108,6 +108,7 @@ body{
 }
 .marginTop{
     animation: marginTop 1s;
+    animation-timing-function: ease;
 }
 @keyframes marginTop{
     0%{top: var(--top)}
