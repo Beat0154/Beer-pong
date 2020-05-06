@@ -1,38 +1,34 @@
-var body = document.getElementById("body");
+var html = document.getElementById("html");
 var reshoot = document.getElementById("reshoot");
 var ball = document.getElementById("ball");
 var shooter = document.getElementById("shooter");
 var cupsOut = [];
 document.addEventListener("click", shootY);
+
 function shootY(){
     document.removeEventListener("click", shootY); 
     var top = window.getComputedStyle(ball).getPropertyValue("top");
     ball.classList.remove("shootY");
     ball.classList.add("shootX");
     ball.style.top = top;
-  document.getElementById("html").setAttribute("onclick","shootX('top')");
-    var shootYstr = "shootX('";
-    var shootYstr1 = top.toString();
-    var shootYstr2 = "')";
-    var onclick = shootYstr.concat(shootYstr1, shootYstr2);
-    document.getElementById("html").setAttribute("onclick", onclick);
-    
+    html.setAttribute("onclick","shootX('top')");
+    var onclick = "shootX('".concat(top.toString(), "')");
+    html.setAttribute("onclick", onclick);    
 }
+
 function shootX(valueY){
-    document.getElementById("html").setAttribute("onclick","");
+    html.setAttribute("onclick","");
     var top = parseFloat(valueY);
     var topABS = Math.abs(parseFloat(valueY));
     var left = window.getComputedStyle(ball).getPropertyValue("left");
-    leftABS = parseFloat(left);
+    var leftABS = parseFloat(left);
     ball.classList.remove("shootX");
     var newtop = top-325;
-    var newtopStr = newtop.toString();
-    var px = "px";
-    var final = newtopStr.concat(px);
+    var final = newtop.toString().concat("px");
     let root = document.documentElement;
     root.style.setProperty('--top', (top)+ "px");
-    root.style.setProperty('--top325', (top-325)+ "px");
-    ball.classList.add("marginTop");
+    root.style.setProperty('--top325', (newtop)+ "px");
+    ball.classList.add("Shoot");
     ball.style.top = final;
     ball.style.left = left;
     if(140<topABS && topABS<175 && -125<leftABS && leftABS<-60){
@@ -56,7 +52,7 @@ function shootX(valueY){
     setTimeout(function(){
         if(cupsOut.length == 6){
             var time = timer();
-            alert("Winner! Gagnant!");
+            alert("Winner!");
             document.getElementById("time").innerHTML = time + " seconds";
             document.getElementById("time").style.display="block";
             document.getElementById("restart").style.display="block";
@@ -83,11 +79,12 @@ function reshoot1(){
     ball.classList.add("shootY");
     ball.style.top = "0px";
     ball.style.left = "0px";
-    ball.classList.remove("marginTop");
+    ball.classList.remove("Shoot");
     setTimeout(function(){
         document.addEventListener("click", shootY); 
     },1000);
 }
+
 var startDate = new Date();
 var startTime = startDate.getTime();
 function timer(){

@@ -106,11 +106,11 @@ body{
     0%{opacity: 1}
     100%{opacity: 0}
 }
-.marginTop{
-    animation: marginTop 1s;
+.Shoot{
+    animation: Shoot 1s;
     animation-timing-function: ease;
 }
-@keyframes marginTop{
+@keyframes Shoot{
     0%{top: var(--top)}
     100%{top: var(--top325)}
 }
