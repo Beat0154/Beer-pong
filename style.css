@@ -11,12 +11,17 @@ body{
     overflow-x: hidden;
     display: block;
 }
+ellipse{
+    fill:hsl(0, 0%, 90%); 
+    stroke: black; 
+    stroke-weight: 1px;
+}
 #reshoot, #restart{
     margin: 10rem auto;
     font-size: 2rem;
     padding: 1rem 2rem;
     border-radius: 0.3rem;
-    display: none;
+    display: block;
     color: black; 
     border: 3px solid black;
     background-color: yellow;
@@ -38,11 +43,6 @@ body{
 #time{
     
 }
-/*
-#time::after{
-    content: " seconds";
-}
-*/
 .cups{
     margin: auto; 
     width: 310px;
@@ -75,7 +75,7 @@ body{
 }
 .shooter{
     position: relative;
-    top: 375px;
+    top: 200px;
     left: 125px;
     width: 300px;
     margin: auto;
@@ -95,7 +95,7 @@ body{
 }
 @keyframes shootY{
     0%{top:0px}
-    50%{top:-175px}
+    50%{top:175px}
     100%{top:0px}
 }
 .fadeAway{

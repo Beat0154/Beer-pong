@@ -1,87 +1,91 @@
 var html = document.getElementById("html");
 var reshoot = document.getElementById("reshoot");
 var ball = document.getElementById("ball");
-var shooter = document.getElementById("shooter");
+var root = document.documentElement;
 var cupsOut = [];
-document.addEventListener("click", shootY);
 
 function shootY(){
-    document.removeEventListener("click", shootY); 
-    var top = window.getComputedStyle(ball).getPropertyValue("top");
+    let top = window.getComputedStyle(ball).getPropertyValue("top");
     ball.classList.remove("shootY");
     ball.classList.add("shootX");
     ball.style.top = top;
-    html.setAttribute("onclick","shootX('top')");
-    var onclick = "shootX('".concat(top.toString(), "')");
+    let onclick = "shootX('".concat(top.toString(), "')");
     html.setAttribute("onclick", onclick);    
 }
 
 function shootX(valueY){
     html.setAttribute("onclick","");
-    var top = parseFloat(valueY);
-    var topABS = Math.abs(parseFloat(valueY));
-    var left = window.getComputedStyle(ball).getPropertyValue("left");
-    var leftABS = parseFloat(left);
-    ball.classList.remove("shootX");
-    var newtop = top-325;
-    var final = newtop.toString().concat("px");
-    let root = document.documentElement;
-    root.style.setProperty('--top', (top)+ "px");
+    let top = valueY;
+    let topInt = parseInt(valueY);
+    let left = window.getComputedStyle(ball).getPropertyValue("left");
+    let leftInt = parseInt(left);
+    let newtop = topInt-325;
+    root.style.setProperty('--top', (topInt)+ "px");
     root.style.setProperty('--top325', (newtop)+ "px");
+    ball.classList.remove("shootX");
     ball.classList.add("Shoot");
-    ball.style.top = final;
+    ball.style.top = newtop.toString().concat("px");
     ball.style.left = left;
-    if(140<topABS && topABS<175 && -125<leftABS && leftABS<-60){
+    if(-20<topInt && topInt<20 && -125<leftInt && leftInt<-60){
         removeCup("1");
     }
-    if(140<topABS && topABS<175 && -40<leftABS && leftABS<40){
+    if(-20<topInt && topInt<20 && -40<leftInt && leftInt<40){
         removeCup("2");
     }
-    if(140<topABS && topABS<175 && 60<leftABS && leftABS<125){
+    if(-20<topInt && topInt<20 && 60<leftInt && leftInt<125){
         removeCup("3");
     }
-    if(85<topABS && topABS<140 && -90<leftABS && leftABS<-25){
+    if(60<topInt && topInt<100 && -90<leftInt && leftInt<-25){
         removeCup("4");
     }
-    if(85<topABS && topABS<140 && 15<leftABS && leftABS<80){
+    if(60<topInt && topInt<100 && 15<leftInt && leftInt<80){
         removeCup("5");
     }
-    if(25<topABS && topABS<80 && -45<leftABS && leftABS<45){
+    if(140<topInt && topInt<180 && -45<leftInt && leftInt<45){
         removeCup("6");
     }
     setTimeout(function(){
         if(cupsOut.length == 6){
-            var time = timer();
+            let time = timer();
             alert("Winner!");
-            document.getElementById("time").innerHTML = time + " seconds";
-            document.getElementById("time").style.display="block";
-            document.getElementById("restart").style.display="block";
+            let p = document.createElement("p");
+            p.innerHTML = time + " seconds";
+            p.setAttribute("id","time");
+            document.body.appendChild(p);
+            let restartBtn = document.createElement("BUTTON");
+            restartBtn.innerHTML = "Restart";
+            restartBtn.setAttribute("onclick","location.reload()");
+            restartBtn.setAttribute("id","restart");
+            document.body.appendChild(restartBtn);
         }else{
-            reshoot.style.display = "block";
+            let reshootBtn = document.createElement("BUTTON");
+            reshootBtn.innerHTML = "Reshoot";
+            reshootBtn.setAttribute("onclick","reshot()");
+            reshootBtn.setAttribute("id","reshoot");
+            document.body.appendChild(reshootBtn);
         }
-    },1500);
+    },1000);
 }
 
 function removeCup(cup){
-    var cupStr = "cup";
-    var element = cupStr.concat(cup);
+    let element = "cup".concat(cup);
     let alreadyExists = cupsOut.includes(cup);
     if(alreadyExists==false){  
         cupsOut.push(cup);
     }
     setTimeout(function(){
-        document.getElementById(element).classList.add("fadeAway");
+ document.getElementById(element).classList.add("fadeAway");
     },1000);
 }
 
-function reshoot1(){
-    reshoot.style.display = "none";
+function reshot(){
+    document.getElementById("reshoot").remove();
+    ball.classList.remove("Shoot");
     ball.classList.add("shootY");
     ball.style.top = "0px";
     ball.style.left = "0px";
-    ball.classList.remove("Shoot");
     setTimeout(function(){
-        document.addEventListener("click", shootY); 
+        html.setAttribute("onclick", "shootY()"); 
     },1000);
 }
 
